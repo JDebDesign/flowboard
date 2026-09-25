@@ -1,0 +1,92 @@
+.page {
+  min-height: 100%;
+}
+
+.header {
+  height: 65px;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoMark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-size: var(--font-size-base);
+  letter-spacing: var(--letter-spacing-tighter);
+  font-weight: var(--font-weight-medium);
+}
+
+.badge {
+  font-size: var(--font-size-xs);
+  color: var(--color-muted);
+  background: var(--color-column-bg);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+}
+
+.backLink {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.body {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px 96px;
+  gap: 48px;
+}
+
+.sidebar {
+  position: sticky;
+  top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.navLink {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+  text-decoration: none;
+  padding: 6px 0;
+}
+
+.navLink:hover {
+  color: var(--color-text);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.intro {
+  font-size: var(--font-size-base);
+  color: var(--color-muted);
+  max-width: 720px;
+  margin: 0;
+}

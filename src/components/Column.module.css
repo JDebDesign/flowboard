@@ -64,17 +64,9 @@
 }
 
 .addCard {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: none;
-  border: none;
-  font-size: 14px;
-  font-weight: 500;
   color: var(--color-muted);
-  padding: 0;
 }
 
-.addCard:hover {
+.addCard:hover:not(:disabled) {
   color: var(--color-text);
 }

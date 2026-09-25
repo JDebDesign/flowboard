@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import type { Card, Priority } from '../types';
 import { Modal } from './Modal';
+import { Button } from './Button';
 import fields from './formFields.module.css';
 
 const PRIORITIES: Priority[] = ['High', 'Medium', 'Low'];
@@ -126,19 +127,19 @@ export function CardModal({ initialValues, onClose, onSave, onDelete }: CardModa
 
         <div className={fields.actionsSplit}>
           {onDelete ? (
-            <button type="button" className={fields.buttonDanger} onClick={onDelete}>
+            <Button type="button" variant="danger-text" onClick={onDelete}>
               Delete card
-            </button>
+            </Button>
           ) : (
             <span />
           )}
           <div className={fields.actions}>
-            <button type="button" className={fields.buttonSecondary} onClick={onClose}>
+            <Button type="button" variant="secondary" onClick={onClose}>
               Cancel
-            </button>
-            <button type="submit" className={fields.buttonPrimary}>
+            </Button>
+            <Button type="submit" variant="primary">
               Save
-            </button>
+            </Button>
           </div>
         </div>
       </form>

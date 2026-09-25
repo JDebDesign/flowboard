@@ -4,6 +4,7 @@ import { useData } from '../context/useData';
 import { Navbar } from '../components/Navbar';
 import { BoardCard } from '../components/BoardCard';
 import { CreateBoardModal } from '../components/CreateBoardModal';
+import { Button } from '../components/Button';
 import { PlusIcon } from '../components/icons';
 import styles from './BoardsPage.module.css';
 
@@ -29,10 +30,9 @@ export function BoardsPage() {
       <main className={styles.main}>
         <div className={styles.headerRow}>
           <h1 className={styles.heading}>My Boards</h1>
-          <button type="button" className={styles.newBoardButton} onClick={() => setModalOpen(true)}>
-            <PlusIcon size={18} color="white" />
+          <Button variant="accent" icon={<PlusIcon size={18} color="white" />} onClick={() => setModalOpen(true)}>
             New Board
-          </button>
+          </Button>
         </div>
 
         {error && <p className={styles.empty}>Couldn't load your boards: {error}</p>}

@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Generated from design-system.md by scripts/sync-design-tokens.mjs — never hand-edit or commit.
+src/styles/tokens.css
+src/design-system/tokens.generated.ts
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

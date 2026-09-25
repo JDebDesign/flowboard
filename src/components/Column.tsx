@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import type { DragEvent } from 'react';
 import type { Card as CardType, Column as ColumnType } from '../types';
 import { Card } from './Card';
+import { Button } from './Button';
 import { PlusIcon, UploadIcon } from './icons';
 import styles from './Column.module.css';
 
@@ -101,10 +102,9 @@ export function Column({
           ))
         )}
       </div>
-      <button type="button" className={styles.addCard} onClick={onAddCard}>
-        <PlusIcon size={16} />
+      <Button variant="ghost-muted" className={styles.addCard} icon={<PlusIcon size={16} />} onClick={onAddCard}>
         Add card
-      </button>
+      </Button>
     </div>
   );
 }

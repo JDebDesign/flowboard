@@ -4,6 +4,8 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
 import { supabase } from '../lib/supabaseClient';
 import { LogoIcon } from '../components/icons';
+import { Button } from '../components/Button';
+import fields from '../components/formFields.module.css';
 import styles from './LoginPage.module.css';
 
 type Tab = 'password' | 'magic-link' | 'sign-up';
@@ -128,13 +130,13 @@ export function LoginPage() {
 
           {tab === 'password' && (
             <form className={styles.form} onSubmit={handlePasswordSignIn}>
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="email">
+              <div className={fields.field}>
+                <label className={fields.label} htmlFor="email">
                   Email Address
                 </label>
                 <input
                   id="email"
-                  className={styles.input}
+                  className={fields.input}
                   type="email"
                   placeholder="you@example.com"
                   value={email}
@@ -142,13 +144,13 @@ export function LoginPage() {
                   required
                 />
               </div>
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="password">
+              <div className={fields.field}>
+                <label className={fields.label} htmlFor="password">
                   Password
                 </label>
                 <input
                   id="password"
-                  className={styles.input}
+                  className={fields.input}
                   type="password"
                   placeholder="••••••••"
                   value={password}
@@ -161,21 +163,21 @@ export function LoginPage() {
                   Forgot password?
                 </button>
               </div>
-              <button type="submit" className={styles.submit} disabled={submitting}>
+              <Button type="submit" variant="primary" disabled={submitting}>
                 {submitting ? 'Signing in…' : 'Sign in'}
-              </button>
+              </Button>
             </form>
           )}
 
           {tab === 'magic-link' && (
             <form className={styles.form} onSubmit={handleMagicLink}>
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="magic-email">
+              <div className={fields.field}>
+                <label className={fields.label} htmlFor="magic-email">
                   Email Address
                 </label>
                 <input
                   id="magic-email"
-                  className={styles.input}
+                  className={fields.input}
                   type="email"
                   placeholder="you@example.com"
                   value={email}
@@ -183,21 +185,21 @@ export function LoginPage() {
                   required
                 />
               </div>
-              <button type="submit" className={styles.submit} disabled={submitting}>
+              <Button type="submit" variant="primary" disabled={submitting}>
                 {submitting ? 'Sending…' : 'Send magic link'}
-              </button>
+              </Button>
             </form>
           )}
 
           {tab === 'sign-up' && (
             <form className={styles.form} onSubmit={handleSignUp}>
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="signup-email">
+              <div className={fields.field}>
+                <label className={fields.label} htmlFor="signup-email">
                   Email Address
                 </label>
                 <input
                   id="signup-email"
-                  className={styles.input}
+                  className={fields.input}
                   type="email"
                   placeholder="you@example.com"
                   value={email}
@@ -205,13 +207,13 @@ export function LoginPage() {
                   required
                 />
               </div>
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="signup-password">
+              <div className={fields.field}>
+                <label className={fields.label} htmlFor="signup-password">
                   Password
                 </label>
                 <input
                   id="signup-password"
-                  className={styles.input}
+                  className={fields.input}
                   type="password"
                   placeholder="At least 6 characters"
                   value={password}
@@ -220,9 +222,9 @@ export function LoginPage() {
                   required
                 />
               </div>
-              <button type="submit" className={styles.submit} disabled={submitting}>
+              <Button type="submit" variant="primary" disabled={submitting}>
                 {submitting ? 'Creating account…' : 'Create account'}
-              </button>
+              </Button>
             </form>
           )}
         </div>
