@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Modal } from './Modal';
+import { Button } from './Button';
 import fields from './formFields.module.css';
 
 interface CreateBoardModalProps {
@@ -44,12 +45,12 @@ export function CreateBoardModal({ onClose, onCreate, error }: CreateBoardModalP
           {error && <span style={{ color: 'var(--color-danger)', fontSize: 14 }}>{error}</span>}
         </div>
         <div className={fields.actions}>
-          <button type="button" className={fields.buttonSecondary} onClick={onClose}>
+          <Button type="button" variant="secondary" onClick={onClose}>
             Cancel
-          </button>
-          <button type="submit" className={fields.buttonPrimary} disabled={submitting}>
+          </Button>
+          <Button type="submit" variant="primary" disabled={submitting}>
             {submitting ? 'Creating…' : 'Create'}
-          </button>
+          </Button>
         </div>
       </form>
     </Modal>

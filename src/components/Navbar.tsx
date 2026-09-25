@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
 import { LogoIcon } from './icons';
+import { Button } from './Button';
 import styles from './Navbar.module.css';
 
 export function Navbar() {
@@ -25,12 +26,15 @@ export function Navbar() {
         <Link to="/boards" className={styles.navLink}>
           Boards
         </Link>
+        <Link to="/design-system" className={styles.navLink}>
+          Design System
+        </Link>
       </div>
       <div className={styles.actions}>
         <span className={styles.avatar}>{initial}</span>
-        <button type="button" className={styles.signOut} onClick={handleSignOut}>
+        <Button variant="ghost-muted" className={styles.signOut} onClick={handleSignOut}>
           Sign out
-        </button>
+        </Button>
       </div>
     </header>
   );

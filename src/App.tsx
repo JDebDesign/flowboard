@@ -5,6 +5,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { LoginPage } from './pages/LoginPage';
 import { BoardsPage } from './pages/BoardsPage';
 import { BoardPage } from './pages/BoardPage';
+import { DesignSystemPage } from './pages/DesignSystemPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/boards" replace />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/design-system" element={<DesignSystemPage />} />
           <Route
             path="/boards"
             element={

@@ -13,6 +13,7 @@
 
 .card:hover {
   border-color: rgba(3, 105, 161, 0.4);
+  box-shadow: var(--shadow-card);
 }
 
 .dragging {
@@ -42,18 +43,18 @@
 }
 
 .priorityHigh {
-  background: #fde3e8;
+  background: var(--color-danger-bg);
   color: var(--color-danger);
 }
 
 .priorityMedium {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--color-priority-medium-bg);
+  color: var(--color-priority-medium-text);
 }
 
 .priorityLow {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--color-priority-low-bg);
+  color: var(--color-priority-low-text);
 }
 
 .dueDate {
