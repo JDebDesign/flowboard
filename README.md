@@ -1,32 +1,28 @@
-# React + TypeScript + Vite
+# FlowBoard
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A team Kanban board built with React, TypeScript, and Vite, backed by Supabase (Auth + Postgres).
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 18 + TypeScript, bundled with Vite
+- `react-router-dom` for routing (`/login`, `/boards`, `/boards/:boardId`)
+- Supabase Auth (email/password, magic link) for real user accounts
+- Supabase Postgres for boards, columns, and cards, with Row Level Security scoping every row to its owning user
+- Plain CSS Modules for styling — no CSS framework
 
-## React Compiler
+## Local development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Copy `.env.example` to `.env.local` and fill in your Supabase project's URL and publishable key.
+2. `npm install`
+3. `npm run dev`
 
-## Expanding the Oxlint configuration
+## Scripts
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- `npm run dev` — start the dev server
+- `npm run build` — type-check and build for production
+- `npm run lint` — run oxlint
+- `npm run preview` — preview the production build locally
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+## Deployment
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Deployed on Vercel, connected to this repository's `main` branch — every push triggers a new production deployment. The `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` environment variables must be set in the Vercel project settings.
