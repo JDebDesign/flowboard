@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import type { DragEvent } from 'react';
 import type { Card as CardType, Column as ColumnType } from '../types';
 import { Card } from './Card';
-import { PlusIcon } from './icons';
+import { PlusIcon, UploadIcon } from './icons';
 import styles from './Column.module.css';
 
 export interface DragPayload {
@@ -75,24 +75,31 @@ export function Column({
         <span className={styles.count}>{cards.length}</span>
       </div>
       <div className={styles.cardList} ref={listRef}>
-        {cards.map((card, index) => (
-          <div key={card.id} data-card-index={index}>
-            <Card
-              card={card}
-              isDragging={draggingCardId === card.id}
-              onClick={() => onCardClick(card.id)}
-              onDragStart={(event) => {
-                event.dataTransfer.setData(
-                  'application/json',
-                  JSON.stringify({ cardId: card.id, fromColumnId: column.id }),
-                );
-                event.dataTransfer.effectAllowed = 'move';
-                onDragStartCard({ cardId: card.id, fromColumnId: column.id });
-              }}
-              onDragEnd={onDragEndCard}
-            />
+        {cards.length === 0 ? (
+          <div className={styles.emptyDropZone}>
+            <UploadIcon size={24} />
+            <span className={styles.emptyDropZoneText}>Drop a card here or add one below</span>
           </div>
-        ))}
+        ) : (
+          cards.map((card, index) => (
+            <div key={card.id} data-card-index={index}>
+              <Card
+                card={card}
+                isDragging={draggingCardId === card.id}
+                onClick={() => onCardClick(card.id)}
+                onDragStart={(event) => {
+                  event.dataTransfer.setData(
+                    'application/json',
+                    JSON.stringify({ cardId: card.id, fromColumnId: column.id }),
+                  );
+                  event.dataTransfer.effectAllowed = 'move';
+                  onDragStartCard({ cardId: card.id, fromColumnId: column.id });
+                }}
+                onDragEnd={onDragEndCard}
+              />
+            </div>
+          ))
+        )}
       </div>
       <button type="button" className={styles.addCard} onClick={onAddCard}>
         <PlusIcon size={16} />
