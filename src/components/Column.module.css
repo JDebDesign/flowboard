@@ -8,6 +8,13 @@
   width: 320px;
   flex-shrink: 0;
   min-height: 200px;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 640px) {
+  .column {
+    width: calc(100vw - 72px);
+  }
 }
 
 .columnOver {

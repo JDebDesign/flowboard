@@ -2,11 +2,35 @@
   padding: 24px 32px;
 }
 
+@media (max-width: 640px) {
+  .main {
+    padding: 16px;
+  }
+}
+
 .headerRow {
   display: flex;
   align-items: baseline;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 24px;
+}
+
+.renameForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.renameInput {
+  max-width: 280px;
+  width: auto;
+}
+
+.headerActions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 
 .breadcrumb {
@@ -45,4 +69,11 @@
   gap: 16px;
   overflow-x: auto;
   padding-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  .columns {
+    scroll-snap-type: x mandatory;
+    gap: 12px;
+  }
 }

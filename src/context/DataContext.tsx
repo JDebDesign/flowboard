@@ -9,6 +9,8 @@ export interface DataContextValue {
   loading: boolean;
   error: string | null;
   createBoard: (name: string) => Promise<Board>;
+  renameBoard: (boardId: string, name: string) => Promise<void>;
+  deleteBoard: (boardId: string) => Promise<void>;
   addCard: (boardId: string, columnId: string, input: Omit<Card, 'id'>) => Promise<void>;
   updateCard: (card: Card) => Promise<void>;
   deleteCard: (boardId: string, cardId: string) => Promise<void>;
@@ -59,6 +61,16 @@ export function DataProvider({ children }: { children: ReactNode }) {
     },
     [user],
   );
+
+  const renameBoard = useCallback(async (boardId: string, name: string) => {
+    await api.renameBoard(boardId, name);
+    setState((prev) => ({ ...prev, boards: prev.boards.map((b) => (b.id !== boardId ? b : { ...b, name })) }));
+  }, []);
+
+  const deleteBoard = useCallback(async (boardId: string) => {
+    await api.deleteBoard(boardId);
+    setState((prev) => ({ ...prev, boards: prev.boards.filter((b) => b.id !== boardId) }));
+  }, []);
 
   const addCard = useCallback(
     async (boardId: string, columnId: string, input: Omit<Card, 'id'>) => {
@@ -126,8 +138,20 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const getBoard = useCallback((boardId: string) => state.boards.find((b) => b.id === boardId), [state.boards]);
 
   const value = useMemo<DataContextValue>(
-    () => ({ state, loading, error, createBoard, addCard, updateCard, deleteCard, moveCard, getBoard }),
-    [state, loading, error, createBoard, addCard, updateCard, deleteCard, moveCard, getBoard],
+    () => ({
+      state,
+      loading,
+      error,
+      createBoard,
+      renameBoard,
+      deleteBoard,
+      addCard,
+      updateCard,
+      deleteCard,
+      moveCard,
+      getBoard,
+    }),
+    [state, loading, error, createBoard, renameBoard, deleteBoard, addCard, updateCard, deleteCard, moveCard, getBoard],
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

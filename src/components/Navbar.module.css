@@ -68,3 +68,18 @@
   font-size: var(--font-size-base);
   letter-spacing: var(--letter-spacing-tighter);
 }
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .brand {
+    gap: 12px;
+  }
+
+  .brandName,
+  .designSystemLink {
+    display: none;
+  }
+}

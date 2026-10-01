@@ -1,0 +1,10 @@
+.confirming {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.message {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}

@@ -3,6 +3,7 @@ import type { FormEvent } from 'react';
 import type { Card, Priority } from '../types';
 import { Modal } from './Modal';
 import { Button } from './Button';
+import { ConfirmAction } from './ConfirmAction';
 import fields from './formFields.module.css';
 
 const PRIORITIES: Priority[] = ['High', 'Medium', 'Low'];
@@ -13,10 +14,13 @@ export interface CardFormValues {
   assignee: string;
   priority: Priority;
   dueDate: string;
+  columnId?: string;
 }
 
 interface CardModalProps {
   initialValues?: Card;
+  columns?: { id: string; name: string }[];
+  currentColumnId?: string;
   onClose: () => void;
   onSave: (values: CardFormValues) => void;
   onDelete?: () => void;
@@ -30,7 +34,8 @@ const emptyValues: CardFormValues = {
   dueDate: '',
 };
 
-export function CardModal({ initialValues, onClose, onSave, onDelete }: CardModalProps) {
+export function CardModal({ initialValues, columns, currentColumnId, onClose, onSave, onDelete }: CardModalProps) {
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
   const [values, setValues] = useState<CardFormValues>(
     initialValues
       ? {
@@ -39,6 +44,7 @@ export function CardModal({ initialValues, onClose, onSave, onDelete }: CardModa
           assignee: initialValues.assignee,
           priority: initialValues.priority,
           dueDate: initialValues.dueDate,
+          columnId: currentColumnId,
         }
       : emptyValues,
   );
@@ -93,6 +99,26 @@ export function CardModal({ initialValues, onClose, onSave, onDelete }: CardModa
           />
         </div>
 
+        {columns && columns.length > 0 && (
+          <div className={fields.field}>
+            <label className={fields.labelMuted} htmlFor="card-column">
+              Column
+            </label>
+            <select
+              id="card-column"
+              className={fields.select}
+              value={values.columnId}
+              onChange={(e) => setValues((v) => ({ ...v, columnId: e.target.value }))}
+            >
+              {columns.map((column) => (
+                <option key={column.id} value={column.id}>
+                  {column.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         <div className={fields.row}>
           <div className={fields.field}>
             <label className={fields.labelMuted} htmlFor="card-priority">
@@ -127,20 +153,25 @@ export function CardModal({ initialValues, onClose, onSave, onDelete }: CardModa
 
         <div className={fields.actionsSplit}>
           {onDelete ? (
-            <Button type="button" variant="danger-text" onClick={onDelete}>
-              Delete card
-            </Button>
+            <ConfirmAction
+              label="Delete card"
+              message="Delete this card?"
+              onConfirm={onDelete}
+              onConfirmingChange={setConfirmingDelete}
+            />
           ) : (
             <span />
           )}
-          <div className={fields.actions}>
-            <Button type="button" variant="secondary" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button type="submit" variant="primary">
-              Save
-            </Button>
-          </div>
+          {!confirmingDelete && (
+            <div className={fields.actions}>
+              <Button type="button" variant="secondary" onClick={onClose}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="primary">
+                Save
+              </Button>
+            </div>
+          )}
         </div>
       </form>
     </Modal>

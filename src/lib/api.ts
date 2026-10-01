@@ -122,6 +122,16 @@ export async function createBoard(userId: string, name: string): Promise<Board> 
   return { id: boardRow.id, name: boardRow.name, createdAt: boardRow.created_at, columns };
 }
 
+export async function renameBoard(boardId: string, name: string): Promise<void> {
+  const { error } = await supabase.from('boards').update({ name }).eq('id', boardId);
+  if (error) throw error;
+}
+
+export async function deleteBoard(boardId: string): Promise<void> {
+  const { error } = await supabase.from('boards').delete().eq('id', boardId);
+  if (error) throw error;
+}
+
 export async function addCard(columnId: string, position: number, input: Omit<Card, 'id'>): Promise<Card> {
   const { data, error } = await supabase
     .from('cards')

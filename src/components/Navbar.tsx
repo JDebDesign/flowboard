@@ -26,7 +26,7 @@ export function Navbar() {
         <Link to="/boards" className={styles.navLink}>
           Boards
         </Link>
-        <Link to="/design-system" className={styles.navLink}>
+        <Link to="/design-system" className={`${styles.navLink} ${styles.designSystemLink}`}>
           Design System
         </Link>
       </div>
